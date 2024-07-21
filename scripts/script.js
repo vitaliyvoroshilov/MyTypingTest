@@ -106,13 +106,13 @@ const displayResult = () => {
     let quoteWords = quote.split(' ');
     let inputWords = userInput.value.split(' ');
     quoteWords.forEach((word, index) => {
-        if (word == inputWords[index]) {
-            wordsCorrect += 1;
-        }
+        if ((word !== ' ') && (word !== '-'))
+            if (word == inputWords[index])
+                wordsCorrect += 1;
     })
     
     let accuracy = 0;
-    if (symbolsCorrect !== 0)
+    if (symbolsCorrect > mistakes)
          accuracy = (symbolsCorrect - mistakes) / symbolsCorrect;
     let accuracyPercent = (accuracy * 100).toFixed(0);
     
