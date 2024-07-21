@@ -1,1 +1,1 @@
-# MyTypingTest
+https://vitaliyvoroshilov.github.io/MyTypingTest/
