@@ -100,7 +100,9 @@ const displayResult = () => {
     let wordsArr = userInput.value.split(' ');
     let words = wordsArr.length;
     let symbols = userInput.value.length;
-    document.getElementById('wpm').innerText = (words / timeTaken).toFixed(0);
-    document.getElementById('spm').innerText = (symbols / timeTaken).toFixed(0);
-    document.getElementById('accuracy').innerText = (((symbols - mistakes) / symbols) * 100).toFixed(0) + '%';
+    let accuracy = (symbols - mistakes) / symbols;
+    let accuracyPercent = (accuracy * 100).toFixed(0);
+    document.getElementById('wpm').innerText = (words / timeTaken * accuracy).toFixed(0);
+    document.getElementById('spm').innerText = (symbols / timeTaken * accuracy).toFixed(0);
+    document.getElementById('accuracy').innerText = accuracyPercent + '%';
 }
