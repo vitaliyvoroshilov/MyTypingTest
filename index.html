@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тайпинг-тест</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="stats">
+            <p>Время: <span id="timer">60 сек</span></p>
+            <p>Ошибки: <span id="mistakes">0</span></p>
+        </div>
+        <div id="quote" onmousedown="return false" onselectstart="return false"></div>
+        <textarea rows="5" id="quote-input" placeholder="Вводите текст здесь. Отсчёт времени начнётся, когда вы введёте первый символ."></textarea>
+        <div class="result">
+            <p>Правильность: <span id="accuracy"></span></p>
+            <p>Символов/минуту: <span id="spm"></span></p>
+            <p>Слов/минуту: <span id="wpm"></span></p>
+        </div>
+    </div>
+
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>

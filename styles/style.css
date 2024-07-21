@@ -1,0 +1,63 @@
+body {
+    background-color:antiquewhite;
+    display: flex;
+    justify-content: center;
+    font-family: Roboto;
+}
+
+.container {
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+}
+
+.stats {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.stats span{
+    font-weight: 600;
+}
+
+#quote {
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.container button {
+    float: right;
+    background-color: antiquewhite;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    
+}
+
+.result {
+    display: flex;
+    justify-content: space-around;
+}
+
+.result span {
+    font-weight: 600;
+}
+
+.success {
+    color: rgb(0, 211, 0);
+}
+
+.fail {
+    color: red;
+}
