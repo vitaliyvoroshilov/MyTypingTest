@@ -43,12 +43,10 @@ const startTimer = () => {
 }
 
 const updateTimer = () => {
-    if (time == 0) {
+    if (time == 0)
         displayResult();
-    }
-    else {
+    else
         document.getElementById('timer').innerText = --time + ' сек';
-    }
 }
 
 userInput.addEventListener('input', () => {
@@ -56,21 +54,16 @@ userInput.addEventListener('input', () => {
         flagStarted = true;
         startTest();
     }
-    let quoteChars = document.getElementsByClassName('quote-chars');
-    quoteChars = Array.from(quoteChars);
-    let userInputChars = userInput.value.split('');
+    let quoteChars = Array.from(document.getElementsByClassName('quote-chars'));
+    let inputChars = userInput.value.split('');
     quoteChars.forEach((char, index) => {
-        if (char.innerText == userInputChars[index]) {
+        if (char.innerText == inputChars[index])
             char.classList.add('success');
-        }
-        else if (userInputChars[index] == null) {
-            if (char.classList.contains('success')) {
+        else if (inputChars[index] == null)
+            if (char.classList.contains('success'))
                 char.classList.remove('success');
-            }
-            else {
+            else
                 char.classList.remove('fail');
-            }
-        }
         else {
             if (!char.classList.contains('fail')) {
                 mistakes += 1;
@@ -79,30 +72,51 @@ userInput.addEventListener('input', () => {
             document.getElementById('mistakes').innerText = mistakes;
         }
         
-        let check = quoteChars.every((char123) => {
-            return char123.classList.contains('success');
+        let check = quoteChars.every((char) => {
+            return char.classList.contains('success');
         });
-        if (check) {
+        if (check) 
             displayResult();
-        }
     });
 });
 
 const displayResult = () => {
     document.querySelector('.result').style.display = 'flex';
-    
     clearInterval(timer);
     userInput.disabled = true;
+
     let timeTaken = 1;
-    if (time != 0) {
+    if (time != 0)
         timeTaken = (60 - time) / 60;
-    }
-    let wordsArr = userInput.value.split(' ');
-    let words = wordsArr.length;
-    let symbols = userInput.value.length;
-    let accuracy = (symbols - mistakes) / symbols;
+
+    let symbolsCorrect = 0;
+    let quoteChars = Array.from(document.getElementsByClassName('quote-chars'));
+    let inputChars = userInput.value.split('');
+    quoteChars.forEach((char, index) => {
+        if (char.innerText == inputChars[index])
+            symbolsCorrect += 1;
+    })
+
+    
+    let quoteText = '';
+    quoteChars.forEach((char) => {
+        quoteText += char.innerText;
+    })
+    let wordsCorrect = 0;
+    let quoteWords = quote.split(' ');
+    let inputWords = userInput.value.split(' ');
+    quoteWords.forEach((word, index) => {
+        if (word == inputWords[index]) {
+            wordsCorrect += 1;
+        }
+    })
+    
+    let accuracy = 0;
+    if (symbolsCorrect !== 0)
+         accuracy = (symbolsCorrect - mistakes) / symbolsCorrect;
     let accuracyPercent = (accuracy * 100).toFixed(0);
-    document.getElementById('wpm').innerText = (words / timeTaken * accuracy).toFixed(0);
-    document.getElementById('spm').innerText = (symbols / timeTaken * accuracy).toFixed(0);
+    
+    document.getElementById('wpm').innerText = (wordsCorrect / timeTaken * accuracy).toFixed(0);
+    document.getElementById('spm').innerText = (symbolsCorrect / timeTaken * accuracy).toFixed(0);
     document.getElementById('accuracy').innerText = accuracyPercent + '%';
 }
